@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'ring_captcha/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "ring_captcha"
+  spec.name          = "ringcaptcha"
   spec.version       = RingCaptcha::VERSION
   spec.authors       = ["Your Name"]
   spec.email         = ["you@example.com"]

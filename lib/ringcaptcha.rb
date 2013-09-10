@@ -1,4 +1,4 @@
-require "ring_captcha/version"
+require "ringcaptcha/version"
 require 'open-uri'
 require 'net/http'
 
@@ -7,7 +7,7 @@ module RingCaptcha
 
   class RingCaptcha
     @@rc_server     = 'api.ringcaptcha.com'
-    @@user_agent    = 'ringcaptcha-php/1.0'    
+    @@user_agent    = 'ringcaptcha-ruby/1.0'    
     
     attr_reader :status, :message, :transaction_id, :phone_number,  :geolocation, 
                 :phone_type, :carrier_name, :device_name, :isp_name
