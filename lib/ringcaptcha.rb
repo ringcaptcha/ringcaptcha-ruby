@@ -1,17 +1,32 @@
-require "ringcaptcha/version"
+require_relative "ringcaptcha/version"
 require 'open-uri'
 require 'net/http'
+require 'json'
 
 module RingCaptcha
   class RingCaptchaRequestError < StandardError; end
+
+  class RingCaptchaVerification
+
+    attr_reader :status, :message, :transaction_id, :phone_number,  :geolocation, :phone_type, :carrier_name
+
+    def initialize(json)
+      @transaction_id = json.has_key?("id") ? json["id"] : false
+      @phone_number = json.has_key?("phone") ? json["phone"] : false
+      @geolocation = json.has_key?("geolocation") ? json["geolocation"] : false
+      @message = json.has_key?("message") ? json["message"] : false
+      @phone_type = json.has_key?("phone_type") ? json["phone_type"] : false
+      @carrier_name = json.has_key?("carrier") ? json["carrier"] : false
+    end
+
+  end
 
   class RingCaptcha
     @@rc_server     = 'api.ringcaptcha.com'
     @@user_agent    = 'ringcaptcha-ruby/1.0'    
     
-    attr_reader :status, :message, :transaction_id, :phone_number,  :geolocation, 
-                :phone_type, :carrier_name, :device_name, :isp_name
     attr_accessor :secure
+
     def initialize(app_key, secret_key)
     	@app_key = app_key
     	@secret_key = secret_key
@@ -28,25 +43,15 @@ module RingCaptcha
       resource = "#{@app_key}/verify"
       begin
         response = verify_rest_call(server, resource, data)
-        puts response.inspect
-        @status = response.class.name == "Net::HTTPOK" ? 1 : 0
+        body = JSON.parse(response.body)
+        @status = response.class.name == "Net::HTTPOK" ? body['status'] == "SUCCESS" : 0
       rescue => e
         @status = 0
         @message = e.message 
         return false
       end
 
-      {"id" => @transaction_id,
-       "phone" => @phone_number,
-       "geolocation" => @geolocation,
-       "message" => @message,
-       "phone_type" => @phone_type,
-       "carrier" => @carrier_name,
-       "device" => @device_name,
-       "isp" => @isp_name}.each do |key,var|
-        var = response.to_hash.has_key?(key) ? response.to_hash[key] : false
-       end
-      @status == 1
+      return RingCaptchaVerification.new(body)
 
     end
 
