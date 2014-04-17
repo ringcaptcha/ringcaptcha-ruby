@@ -1,4 +1,3 @@
-require_relative "ringcaptcha/version"
 require 'open-uri'
 require 'net/http'
 require 'json'
