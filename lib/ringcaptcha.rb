@@ -16,6 +16,7 @@ module RingCaptcha
       @message = json.has_key?("message") ? json["message"] : false
       @phone_type = json.has_key?("phone_type") ? json["phone_type"] : false
       @carrier_name = json.has_key?("carrier") ? json["carrier"] : false
+      @roaming = json.has_key?("roaming") ? json["roaming"] : false
     end
 
   end
@@ -36,7 +37,7 @@ module RingCaptcha
 
     def is_valid?(pin_code, token)
       #TODO Check parameters
-      data = {secret_key: @secret_key, token: token, code: pin_code}
+      data = {:secret_key => @secret_key, :token => token, :code => pin_code}
       sanitize_data(data)
       server = (@secure ? "https://" : "http://") + @@rc_server
       resource = "#{@app_key}/verify"
