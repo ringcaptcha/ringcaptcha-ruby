@@ -7,7 +7,7 @@ module RingCaptcha
 
   class RingCaptchaVerification
 
-    attr_reader :status, :message, :transaction_id, :phone_number,  :geolocation, :phone_type, :carrier_name
+    attr_reader :status, :message, :transaction_id, :phone_number,  :geolocation, :phone_type, :carrier_name, :roaming
 
     def initialize(json)
       @transaction_id = json.has_key?("id") ? json["id"] : false
