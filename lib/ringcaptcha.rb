@@ -7,7 +7,7 @@ module RingCaptcha
 
   class RingCaptchaVerification
 
-    attr_reader :status, :message, :transaction_id, :phone_number,  :geolocation, :phone_type, :carrier_name, :roaming
+    attr_reader :status, :message, :transaction_id, :phone_number,  :geolocation, :phone_type, :carrier_name, :roaming, :risk
 
     def initialize(json)
       @transaction_id = json.has_key?("id") ? json["id"] : false
@@ -17,6 +17,7 @@ module RingCaptcha
       @phone_type = json.has_key?("phone_type") ? json["phone_type"] : false
       @carrier_name = json.has_key?("carrier") ? json["carrier"] : false
       @roaming = json.has_key?("roaming") ? json["roaming"] : false
+      @risk = json.has_key?("threat_level") ? json["threat_level"] : false
     end
 
   end
