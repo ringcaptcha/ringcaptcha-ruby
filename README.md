@@ -1,29 +1,10 @@
-# RingCaptcha
+# Ruby Library
 
-TODO: Write a gem description
+## Overview
 
-## Installation
+`ringcaptcha/ringcaptcha-ruby` is a Ruby gem for communicating with the RingCaptcha API, which simplifies the Onboarding and Verification of Users
 
-Add this line to your application's Gemfile:
+## Getting Started
 
-    gem 'ringcaptcha'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install ringcaptcha
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+## Learn More
+- Read the [HTML & JS Guides](https://my.ringcaptcha.com/docs/web)
