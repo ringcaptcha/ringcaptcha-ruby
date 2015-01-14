@@ -1,0 +1,7 @@
+<%if @rcap_valid.message%>
+$("#info").append($('<p><%=@rcap_valid.message %></p>')); 
+
+<% else %>
+
+$("#info").append($('<p> Transaction Id: <%=@rcap_valid.transaction_id %></p> <p> Phone Number : <%=@rcap_valid.phone_number %></p> <p> Geolocation : <%=@rcap_valid.geolocation %></p> <p> Phone Type : <%=@rcap_valid.phone_type %></p> <p> Carrier Name : <%=@rcap_valid.carrier_name %></p> ')); 
+<% end%>
