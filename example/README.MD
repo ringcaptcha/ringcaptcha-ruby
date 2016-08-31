@@ -1,14 +1,17 @@
-1. Add gem in gemfile.
-gem 'ringcaptcha', '~> 0.0.2' and run bundle install.
+# Rails Example App
 
-2. Create new scaffold say home, where index page is root page of application.
+## Overview
 
-3. In app/views/homes/index.html.erb file add javascript files of ringcaptcha widget.
+This is an example app built on Rails that uses the RingCaptcha Ruby gem. It adds the RingCaptcha JS widget to a blank page, and after entering the PIN code, the user must click on "Check RC" button which will show the details of the verification, in the logs and a reduced subset of items in the HTML site.
 
-4. In application, On click of button "Check RC", call ajax method /homes_controller.rb/valid_rc
+## Getting Started
 
-5. In valid_rc mathod, initialize ringcaptach gem by using RingCaptcha::RingCaptcha.new(app_key, secret_key).
+In order to run the example please follow the next steps:
 
-6. After initializing gem call is_valid method of ringcaptch with pincode and token key.
-
-7. In valid_rc.js.erb file if pin code is valid then show error else show Rc details.
+1. git clone this repository
+2. `cd example`
+3. `rvm install ruby-2.3.0` is using RVM, otherwise make sure your version of Ruby is at least 2.3.0
+4. `bundle install` to install all dependencies
+5. `bin/rake db:migrate RAILS_ENV=development` to run all migrations to create basic structure
+6. `dotenv rails server` bring up the server
+7. Open [localhost:3000](localhost:3000) in your browser
