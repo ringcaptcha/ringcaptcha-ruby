@@ -1,0 +1,7 @@
+%body
+  %div{"data-app" => ENV['RING_CAPTCHA_APP_KEY'], "data-locale" => "en", "data-widget" => ""}
+  %input#btnSubmit{:type => "submit", :value => "Check RC"}/
+  #result
+  #info
+  %script{:src => "//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js", :type => "text/javascript"}
+  %script{:charset => "UTF-8", :src => "//cdn.ringcaptcha.com/widget/v2/bundle.min.js", :type => "text/javascript"}

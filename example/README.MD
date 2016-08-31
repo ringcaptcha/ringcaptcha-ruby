@@ -1,7 +1,7 @@
-1. Add gem in gemfile. 
+1. Add gem in gemfile.
 gem 'ringcaptcha', '~> 0.0.2' and run bundle install.
 
-2. Create new scaffold say home, where index page is root page of application. 
+2. Create new scaffold say home, where index page is root page of application.
 
 3. In app/views/homes/index.html.erb file add javascript files of ringcaptcha widget.
 
