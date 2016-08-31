@@ -13,6 +13,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "http://ringcaptcha.com"
   spec.license       = "MIT"
   spec.files         = ["./lib/ringcaptcha.rb"]
+  spec.version       = RingCaptcha::VERSION
 
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
