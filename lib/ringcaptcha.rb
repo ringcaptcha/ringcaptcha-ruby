@@ -9,7 +9,7 @@ module RingCaptcha
   class RingCaptchaVerification
 
     extend Forwardable
-    PUBLIC_METHODS = [:status, :message, :transaction_id, :phone_number,  :geolocation, :phone_type, :carrier_name, :roaming, :risk, :json]
+    PUBLIC_METHODS = [:status, :message, :transaction_id, :phone,  :geolocation, :phone_type, :carrier_name, :roaming, :risk, :json]
 
     PUBLIC_METHODS.each do |m|
       def_delegators :@json, m
