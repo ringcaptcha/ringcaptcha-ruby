@@ -1,6 +1,7 @@
 require 'open-uri'
 require 'net/http'
 require 'json'
+require 'ostruct'
 
 module RingCaptcha
   class RingCaptchaRequestError < StandardError; end
@@ -8,22 +9,22 @@ module RingCaptcha
   class RingCaptchaVerification
 
     extend Forwardable
-    PUBLIC_METHODS = [:status, :message, :transaction_id, :phone_number,  :geolocation, :phone_type, :carrier_name, :roaming, :risk, :json]
+    PUBLIC_METHODS = [:status, :message, :transaction_id, :phone,  :geolocation, :phone_type, :carrier_name, :roaming, :risk, :json]
 
     PUBLIC_METHODS.each do |m|
       def_delegators :@json, m
     end
 
     def initialize(json)
-      @json = json
+      @json = OpenStruct.new(json)
     end
 
     def valid?
-      @status == "SUCCESS"
+      status == "SUCCESS"
     end
 
     def as_json(options={})
-      @json.slice(*PUBLIC_METHODS.map(&:to_s))
+      @json.to_h.slice(*PUBLIC_METHODS)
     end
   end
 
