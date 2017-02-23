@@ -1,6 +1,7 @@
 require 'open-uri'
 require 'net/http'
 require 'json'
+require 'ostruct'
 
 module RingCaptcha
   class RingCaptchaRequestError < StandardError; end
@@ -15,15 +16,15 @@ module RingCaptcha
     end
 
     def initialize(json)
-      @json = json
+      @json = OpenStruct.new(json)
     end
 
     def valid?
-      @status == "SUCCESS"
+      status == "SUCCESS"
     end
 
     def as_json(options={})
-      @json.slice(*PUBLIC_METHODS.map(&:to_s))
+      @json.to_h.slice(*PUBLIC_METHODS)
     end
   end
 
